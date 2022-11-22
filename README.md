@@ -1,1 +1,6 @@
-# qwerty-laravel-docker
+### laravel-docker
+
+- nginx
+- php
+- mysql
+- artisan
