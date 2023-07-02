@@ -1,6 +1,7 @@
-### laravel-docker
+## php-docker
+
 
 - nginx
-- php
+- php 8.1
+- php extension pdo_mysql mbstring exif pcntl bcmath gd soap
 - mysql
-- artisan

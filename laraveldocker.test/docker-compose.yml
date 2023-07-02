@@ -1,7 +1,7 @@
 version: '3'
 
 networks:
-  laravel:
+  app:
 
 services:
 
@@ -17,7 +17,7 @@ services:
       - php
       - mysql
     networks:
-      - laravel
+      - app
 
   mysql:
     image: mysql:5.7.22
@@ -36,7 +36,7 @@ services:
       SERVICE_TAGS: dev
       SERVICE_NAME: mysql
     networks:
-      - laravel
+      - app
 
   php:
     build:
@@ -48,7 +48,7 @@ services:
     ports:
       - "9000:9000"
     networks:
-      - laravel
+      - app
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
@@ -62,19 +62,5 @@ services:
       PMA_HOST: mysql
       MYSQL_ROOT_PASSWORD: secret
     networks:
-      - laravel
-
-  artisan:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    container_name: artisan
-    volumes:
-      - ./src:/var/www/html
-    depends_on:
-      - mysql
-    working_dir: /var/www/html
-    entrypoint: [ 'php', '/var/www/html/artisan' ]
-    networks:
-      - laravel
+      - app
 
