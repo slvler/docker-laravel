@@ -1,0 +1,33 @@
+version: "3"
+
+services:
+  php:
+    build:
+      context: .
+      dockerfile: php.Dockerfile
+    container_name: php
+    volumes:
+      - ./src:/var/www/html
+    ports:
+      - 9000:9000
+    tty: true
+    networks:
+      - local-php
+  nginx:
+    build:
+      context: .
+      dockerfile: nginx.Dockerfile
+    container_name: nginx
+    volumes:
+      - ./src/:/var/www/html
+    ports:
+      - 8080:80
+    depends_on:
+      - php
+    networks:
+      - local-php
+
+networks:
+  local-php:
+    name: local-php
+    driver: bridge
